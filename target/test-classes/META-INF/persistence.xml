@@ -10,6 +10,7 @@
     	
     	<class>jacklow.model.Vehiculo</class>
     	<class>jacklow.model.Robo</class>
+    	<class>jacklow.model.Evento</class>
     	 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
