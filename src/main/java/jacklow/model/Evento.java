@@ -2,6 +2,7 @@ package jacklow.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Converter;
@@ -21,7 +22,7 @@ public class Evento { //Le saco el abstract porque hincha los huevos
 	public Evento(LocalDateTime fecha, String desc, Robo robo){
 		this.fecha = fecha;
 		this.descripcion = desc;
-		//this.robo = robo;
+		this.robo = robo;
 	}
 	@Id @GeneratedValue
 	private long id;
@@ -31,9 +32,9 @@ public class Evento { //Le saco el abstract porque hincha los huevos
 	
 	private String descripcion;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "RoboId")
-	private Robo robo;*/
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "roboId")
+	private Robo robo;
 	//@Column(name = "robo_id")
 	/*@ManyToOne(fetch = FetchType.LAZY)
 	private Robo robo;*/
@@ -57,13 +58,13 @@ public class Evento { //Le saco el abstract porque hincha los huevos
 		this.fecha = fecha;
 	}
 
-	/*public Robo getRobo() {
+	public Robo getRobo() {
 		return robo;
 	}
 
 	public void setRobo(Robo robo) {
 		this.robo = robo;
-	}*/
+	}
 	public String getDescripcion() {
 		return descripcion;
 	}

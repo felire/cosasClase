@@ -2,7 +2,6 @@ package db;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -18,17 +17,10 @@ import jacklow.model.Evento;
 import jacklow.model.Robo;
 import jacklow.model.Vehiculo;
 
-public class RelacionMuchos {
+public class RelacionBidireccional {
 
 	@Test
 	public void test() {
-
-		//Robo robo = entityManager.find(Robo.class, 1l);
-		
-		//robo.getEventos().stream().forEach(ev -> System.out.println(ev.getDescripcion()+"\n"));
-	
-		//Ahora cargamos los datos
-
 		LocalDateTime fechaGenerica = LocalDateTime.of(1996, Month.MAY, 14, 12, 06);
 		//(int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minuteOfHour, int secondOfMinute)
 		Vehiculo vehiculo1 = new Vehiculo("que carajo es vtu", "abc111");
@@ -46,12 +38,9 @@ public class RelacionMuchos {
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
-		//entityManager.persist(vehiculo1);
+		entityManager.persist(vehiculo1);
 		entityManager.persist(robo1);
-		//entityManager.persist(evento);
-		//entityManager.persist(evento2);*/
 		tx.commit();
-		
-		
 	}
+
 }

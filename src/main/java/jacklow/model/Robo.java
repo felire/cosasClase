@@ -37,10 +37,10 @@ public class Robo {
 	private String codigoDenuncia;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY/*, mappedBy = "Robo"*/) // --->>> Esto buscaria los eventos que tengan una FK a este robo
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "robo") // --->>> Esto buscaria los eventos que tengan una FK a este robo
 	//@Cascade(value = CascadeType.ALL)
 	//@OrderColumn(name = "id")  //-->> Aca le digo que los eventos los ordene segun el parametro id
-	@JoinColumn(name="roboId")
+	//@JoinColumn(name="roboId",referencedColumnName="id")
 	// Los SET no necesitan ser ordenados, no se repiten, los LIST si. 
 	private List<Evento> eventos;
 	
@@ -51,7 +51,8 @@ public class Robo {
 	//Aca busco el Vehiculo con PK de la FK de mi robo
 	//@Column(name = "vehiculo_id")
 	
-	@ManyToOne(fetch = FetchType.LAZY)  //Le digo que esto es una relacion muchos a 1. Va del lado de muchos. 	
+	@ManyToOne(cascade = CascadeType.ALL)  //Le digo que esto es una relacion muchos a 1. Va del lado de muchos. 	
+	@JoinColumn(name = "vehiculoId")
 	private Vehiculo vehiculo; //Sera una FK en el modelo relacional.
 	@SuppressWarnings("unused")
 	private Robo(){}
